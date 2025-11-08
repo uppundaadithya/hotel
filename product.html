@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Product</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Use absolute path so CSS loads correctly when page is served from /admin/products -->
+    <link rel="stylesheet" href="/styles.css">
     <style>
         /* Simple styles for the admin form container */
         .admin-container {
@@ -107,7 +108,9 @@ select:focus {
     
     <option value="veg">veg</option>
     <option value="non-veg">non-veg</option>
-
+    <option value="pizza">Pizza</option>
+    <option value="pasta">pasta</option>
+    <option value="corn">corn</option>
     <option value="tea">Tea</option>
     <option value="coffee">Coffee</option>
     <option value="snacks">Snacks</option>
@@ -136,11 +139,11 @@ select:focus {
 
         <p id="message" style="margin-top: 20px; text-align: center; font-weight: bold;"></p>
 
-        <a href="#" class="small" style="display: block; text-align: center; margin-top: 20px;">← Back to
-            Ordering Menu</a>
+        <a href="/admin/dashboard" class="small" style="display: block; text-align: center; margin-top: 20px;">← Back to Orders Dashboard</a>
     </div>
 
-    <script type="module" src="product_admin.js"></script>
+    <!-- Use absolute path so module is requested from the correct location -->
+    <script type="module" src="/adminpages/product_admin.js"></script>
 </body>
 
 </html>
