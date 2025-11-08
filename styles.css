@@ -1,0 +1,681 @@
+/* ... (Existing Global Variables and Fonts are unchanged) ... */
+:root {
+    /* Hotel Ordering Demo Colors */
+    --primary: #2b6cb0;
+    /* Blue */
+    --accent: #48bb78;
+    --muted: #6b7280;
+    /* Gray */
+    --bg: #d1fad1;
+    /* Light Background */
+
+    /* Food Card Colors (Standardized from SCSS) */
+    --color-black: #212129;
+    --color-gray: #9b9b9b;
+    --color-heart: #17bebb;
+    /* Teal */
+    --color-star: #ffe500;
+    /* Yellow */
+    --color-button: #ef3e36;
+    /* Red */
+}
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css?family=Inter:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+/* Used by food card component */
+
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    box-sizing: border-box;
+
+}
+
+body {
+    /* Use Inter for the main demo, with fallbacks */
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    background: var(--bg);
+    color: #111;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    /* Fix for horizontal scrollbar due to wide elements */
+    padding-bottom: 0px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.navbar {
+    background-color: #f4f7fff0;
+    overflow: hidden;
+    /* --- KEY FLEXBOX STYLES FOR ALIGNMENT --- */
+    display: flex;
+    align-items: center;
+    /* Vertically centers the logo and links */
+    justify-content: space-between;
+    /* Pushes the logo to the left and links to the right */
+    padding: 0 20px;
+    /* Add some padding on the left/right edges */
+}
+
+.redborder {
+    text-align: center;
+    background-color: rgb(54, 41, 101);
+    color: white;
+    padding: 8px;
+    font-size: 1.3rem;
+    font-family: cursive;
+}
+
+/* --- Logo Styling --- */
+.logo-link {
+    text-decoration: none;
+    /* Remove underline from the logo link */
+    margin-right: 20px;
+}
+
+.logo-text {
+    color: white;
+    font-size: 24px;
+    /* Larger font size for the brand name */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo-img {
+    height: 40px;
+    /* Adjust the logo image size */
+    width: 40px;
+    border-radius: 50%;
+    display: block;
+}
+
+/* --- Navigation Links Styling --- */
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* Makes the list items horizontal */
+    align-items: center;
+}
+
+/* Style the links */
+.navbar a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    /* Smooth transition for hover effect */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Add a hover effect */
+.navbar a:hover {
+    background-color: #555;
+    color: white;
+}
+
+#displayLocation {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* --- Hotel Ordering Demo Layout --- */
+
+.container {
+    width: 100%;
+    /* Use a max-width for large screens */
+     background: linear-gradient(to bottom,white,rgba(234, 221, 142, 0.352));
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Area containing the circular look images */
+.hed {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.look {
+    min-height: 90px;
+    min-width: 90px;
+    max-width: 90px;
+    max-height: 90px;
+    border-radius: 50%;
+    border: solid 2px #ff6f61;
+    margin-right: 36px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.subtitle {
+    color: var(--muted);
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.menu {
+    flex: 2;
+    border: 1px solid #ffb6b672;
+    min-width: 100%;
+    padding: 12px;
+    /* This will be overridden by the flex property on large screens */
+}
+
+.cart {
+    display: none;
+    /* Default state for mobile, overridden by JS toggle or desktop media query */
+    flex-direction: column;
+
+    position: sticky;
+  
+    overflow-y: auto;
+    min-height: 100vh;
+    flex: 1;
+    background: #fafafa;
+    height: fit-content;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-button);
+    min-width: 100%;
+    padding-bottom:30px ;
+
+}
+
+.user-details h3 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.user-details input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.products-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    /* Horizontal scrolling */
+    gap: 12px;
+    padding: 20px 0;
+    /* Add vertical padding */
+    scroll-behavior: smooth;
+    /* Smooth scrolling effect */
+     
+
+
+}
+
+.product,
+.product1 {
+    position: relative;
+    border: 1px solid #e25c5c;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Push card content to the bottom */
+    width: 380px;
+    height: 300px;
+    gap: 10px;
+    flex-shrink: 0;
+   
+    /* Important for horizontal scrolling */
+}
+
+/* Style the entire scrollbar */
+::-webkit-scrollbar {
+    width: 0.5px;
+    height: 0.5px;
+}
+
+/* Style the scrollbar track (the background) */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Style the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.product h3,
+.product1 h3 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.product .price,
+.product1 .price {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.product .desc,
+.product1 .desc {
+    color: rgba(255, 255, 255, 0.863);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+   
+
+}
+
+/* --- Product Card Overlay --- */
+.card {
+ background: linear-gradient(0deg,
+                var(--color-black) 0%,
+                rgba(0, 0, 0, 0.81) 45%,
+                rgba(255, 255, 255, 0) 100%);
+    color: white;
+    width: 100%;
+    padding: 16px; /* Increased padding */
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0; /* FIX: Remove negative margin if possible. If margin is needed, set height properly. */
+    padding-top: 50px; /* Ensure content starts below the transparent part */
+}
+
+/* --- Cart Specific Styles --- */
+.carting {
+    border: #e25c5c 1px solid;
+    padding: 20px;
+    /* Reduced padding slightly */
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+    margin: 8px 0;
+    /* Adjusted margin */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qty-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.qty-controls button {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+/* --- Cart Summary (Fixed Footer) --- */
+.cart-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(to top, hsl(0, 0%, 100%), rgb(255, 255, 255));
+    padding: 15px;
+    border-top: rgba(83, 49, 49, 0.182) 0.1px solid;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Total {
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.small {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn{
+    background: #d20000;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.btn.primary,
+.primary {
+    background: rgb(255, 17, 17);
+    color: white;
+    border: 0;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn2 {
+    border-radius: 6px;
+    border: 0;
+    padding: 10px 10px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #f00000 0%, #ff5d5d 100%);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn2:hover {
+    opacity: 0.9;
+}
+
+#clearCart,
+#placeOrder {
+    padding: 9px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    width: 120px;
+    /* Consistent width */
+}
+
+#clearCart {
+    background-color: rgb(95, 108, 8);
+}
+
+#placeOrder {
+    background-color: rgb(8, 95, 34);
+}
+
+/* =================================================================
+   --- Responsive Layout (Adjusted/Enhanced) --- 
+   ================================================================= */
+
+/* Desktop/Tablet: Cart and Menu side-by-side */
+@media(min-width: 961px) {
+
+    .container {
+        margin: 0 auto;
+        display: flex;
+        /* Make container flexible to host main content */
+        flex-direction: column;
+    }
+
+
+    .menu {
+        min-width: 0;
+        /* Allow menu to shrink appropriately */
+    }
+
+    .cart {
+        /* Force cart display on desktop */
+        min-width: 300px;
+        /* Set a fixed minimum width for the sticky cart */
+        min-height: 400px;
+        /* Ensure cart has a min-height */
+    }
+
+    /* FIX: Hide cart summary footer on desktop since cart is visible */
+
+    /* Add padding to body for when cart summary is hidden on desktop */
+    body {
+        padding-bottom: 20px;
+    }
+}
+
+
+
+/* Tablet (960px and down) - Existing Rules */
+@media(max-width:960px) {
+    .menu {
+        min-width: 100%;
+      
+    }
+
+    .cart {
+        min-width: 100%;
+        /* Make cart scroll normally below the menu on mobile */
+        margin-bottom: 80px;
+        /* Add space for the fixed cart-summary */
+        /* The initial display:none is handled by the inline JS check/toggle */
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .products-grid {
+        padding: 10px 0;
+    }
+}
+
+/* Mobile (600px and down) - New/Adjusted Rules for smaller screens */
+@media(max-width:600px) {
+
+    /* Navbar: Hide links to save space */
+    .navbar ul {
+        display: flex;
+        /* Hide navigation links on small mobile */
+    }
+
+    /* Navbar: Make the logo full width if possible, or center align */
+    .navbar {
+        justify-content: space-between;
+        /* Center the logo when links are hidden */
+    }
+
+    .logo-link {
+        margin-right: 0;
+    }
+
+    /* Header: Make 'look' images smaller and closer together */
+    .look {
+        min-height: 80px;
+        min-width: 80px;
+        max-width: 80px;
+        max-height: 80px;
+        margin-right: 15px;
+        /* Reduce margin */
+        border-width: 1px;
+    }
+
+    /* Main Titles: Reduce font size slightly for better fit */
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    /* Product Cards: Ensure size is manageable on small screens */
+    .product,
+    .product1 {
+        min-width: 80vw;
+        /* Use a relative width */
+        height: 250px;
+    }
+
+    /* Product Card Content: Reduce inner padding for dense information */
+    .card {
+        padding: 8px;
+    }
+
+    .product h3,
+    .product1 h3 {
+        font-size: 1.4rem;
+    }
+
+    /* Carting: Stack cart item details vertically if needed */
+    .carting {
+        flex-direction:row;
+        align-items: center;
+        padding: 15px;
+    }
+
+    /* Cart Summary Footer: Adjust button size/spacing */
+    .cart-summary {
+        padding: 10px;
+    }
+
+    .Total {
+        font-size: 1rem;
+    }
+
+    #clearCart,
+    #placeOrder {
+        width: 100px;
+        /* Make buttons slightly smaller in the footer */
+        padding: 7px;
+        font-size: 0.9rem;
+    }
+
+    /* Popup Size Adjustment */
+    .popup {
+        max-width: 90%;
+        padding: 15px 20px;
+    }
+}
+
+/* Ensure product size is reasonable on smaller screens (Original 500px kept for continuity) */
+@media(max-width:500px) {
+
+    .product,
+    .product1 {
+        width: 90vw;
+        height: 280px;
+    }
+}
+
+/* --- Popup/Modal Styles (Base) --- */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    /* Enhancement for message clarity */
+    color: var(--color-black);
+}
+
+.close-btn {
+    margin-top: 15px;
+    padding: 5px 15px;
+    background: #ff5555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- Popup Contextual Styles (The FIX) --- */
+.popup-success {
+    background: #e6ffed;
+    border: 2px solid #38a169;
+    color: #276749;
+}
+
+.popup-error {
+    background: #fff5f5;
+    border: 2px solid #e53e3e;
+    color: #9b2c2c;
+}
+
+.popup-warning {
+    background: #fffbeb;
+    border: 2px solid #dd6b20;
+    color: #9c4221;
+}
+
+/* ======================== LOCATION CONSENT MODAL STYLES ======================== */
+.consent-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.consent-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 350px;
+    width: 90%;
+}
+
+.consent-box h3 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.consent-buttons button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+

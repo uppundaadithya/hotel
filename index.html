@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+       
     <meta charset="UTF-8">
+       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Product</title>
-    <!-- Use absolute path so CSS loads correctly when page is served from /admin/products -->
+        <title>Add New Product</title>
+           
     <link rel="stylesheet" href="/styles.css">
-    <style>
+        <style>
         /* Simple styles for the admin form container */
         .admin-container {
             max-width: 600px;
@@ -47,103 +49,107 @@
         }
 
         /* ==================================== */
-/* 2. Form/Input Styling (Including Select) */
-/* ==================================== */
+        /* 2. Form/Input Styling (Including Select) */
+        /* ==================================== */
 
-label {
-    /* Ensures label appears above the input */
-    display: block; 
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
+        label {
+            /* Ensures label appears above the input */
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
 
-input[type="text"],
-input[type="tel"],
-select { /* TARGETING THE SELECT ELEMENT HERE */
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid var(--border-light);
-    border-radius: 5px;
-    background-color: var(--bg-white);
-    font-size: 1rem;
-    color: var(--text-dark);
-    border: solid 1px #ccc;
-    
-    /* Remove default browser styling for a cleaner look */
-    -webkit-appearance: none; 
-    -moz-appearance: none;
-    appearance: none;
-    
-    /* Add a custom dropdown arrow (using SVG data URL) */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236c757d" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.014 2.345 4 3.204 4h9.592c.859 0 1.319 1.014.753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px;
-    padding-right: 30px; /* Make space for the custom arrow */
-}
+        input[type="text"],
+        input[type="tel"],
+        select {
+            /* TARGETING THE SELECT ELEMENT HERE */
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: 5px;
+            background-color: var(--bg-white);
+            font-size: 1rem;
+            color: var(--text-dark);
+            border: solid 1px #ccc;
 
-input:focus, 
-select:focus {
-    /* Focus state for better accessibility and user feedback */
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
+            /* Remove default browser styling for a cleaner look */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+
+            /* Add a custom dropdown arrow (using SVG data URL) */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236c757d" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.014 2.345 4 3.204 4h9.592c.859 0 1.319 1.014.753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px;
+            padding-right: 30px;
+            /* Make space for the custom arrow */
+        }
+
+        input:focus,
+        select:focus {
+            /* Focus state for better accessibility and user feedback */
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
     </style>
 </head>
 
 <body>
-    <div class="container admin-container">
-        <h1>Add New Product to Menu</h1>
+        <div class="container admin-container">
+                <h1>Add New Product to Menu</h1>
 
-        <form id="productForm">
-            <label for="productName">Product Name</label>
-            <input type="text" id="productName" required placeholder="e.g., Chicken Caesar Salad">
+                <form id="productForm">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required placeholder="e.g., Chicken Caesar Salad">
 
-   <select id="producttype" required>
-    <option value="" disabled selected>Select a product type</option>
-    
-    <option value="veg">veg</option>
-    <option value="non-veg">non-veg</option>
-    <option value="pizza">Pizza</option>
-    <option value="pasta">pasta</option>
-    <option value="corn">corn</option>
-    <option value="tea">Tea</option>
-    <option value="coffee">Coffee</option>
-    <option value="snacks">Snacks</option>
-    <option value="sandwich">Sandwich</option>
-    <option value="hot milk">Hot Milk</option>
-    <option value="milk shakes">Milk Shakes</option>
-    <option value="cold coffee">Cold Coffee</option>
-    <option value="summer chills">Summer Chills</option>
-    <option value="maggi">Maggi</option>
-    <option value="lemonades">Lemonades</option>
-    <option value="burger">Burger</option>
-</select>
+                        <label for="producttype">Product Type</label>
+                        <select id="producttype" required>
+                                <option value="" disabled selected>Select a product type</option>
+                                <option value="veg">veg</option>
+                                <option value="non-veg">non-veg</option>
+                                <option value="pizza">Pizza</option>
+                                <option value="pasta">pasta</option>
+                                <option value="corn">corn</option>
+                                <option value="tea">Tea</option>
+                                <option value="coffee">Coffee</option>
+                                <option value="snacks">Snacks</option>
+                                <option value="sandwich">Sandwich</option>
+                                <option value="hot milk">Hot Milk</option>
+                                <option value="milk shakes">Milk Shakes</option>
+                                <option value="cold coffee">Cold Coffee</option>
+                                <option value="summer chills">Summer Chills</option>
+                                <option value="maggi">Maggi</option>
+                                <option value="lemonades">Lemonades</option>
+                                <option value="burger">Burger</option>
+                            </select>
 
-            <label for="productPrice">Price (₹)</label>
-            <input type="number" id="productPrice" required min="0.01" step="0.01" placeholder="e.g., 450.00" required>
+                        <label for="productPrice">Price (₹)</label>
+                        <input type="number" id="productPrice" required min="0.01" step="0.01"
+                placeholder="e.g., 450.00">
 
-            <label for="productDescription">Description</label>
-            <textarea id="productDescription" rows="4" required
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="4" required                
                 placeholder="Short description of the product..."></textarea>
 
-            <label for="productImage">Image URL (Optional)</label>
-            <input type="text" id="productImage" placeholder="e.g., http://link.to/image.jpg" required>
+                        <label for="productImage">Image URL (Optional)</label>
+                                    <input type="text" id="productImage" placeholder="e.g., http://link.to/image.jpg">
 
-            <button type="submit" class="btn primary">Save Product</button>
-        </form>
+                        <button type="submit" class="btn primary">Save Product</button>
+                    </form>
 
-        <p id="message" style="margin-top: 20px; text-align: center; font-weight: bold;"></p>
+                <p id="message" style="margin-top: 20px; text-align: center; font-weight: bold;"></p>
 
-        <a href="/admin/dashboard" class="small" style="display: block; text-align: center; margin-top: 20px;">← Back to Orders Dashboard</a>
-    </div>
+                <a href="dashboard" class="small" style="display: block; text-align: center; margin-top: 20px;">←
+            Back to Orders Dashboard</a>
+            </div>
 
-    <!-- Use absolute path so module is requested from the correct location -->
-    <script type="module" src="/adminpages/product_admin.js"></script>
+           
+    <script type="module" src="product_admin.js"></script>
 </body>
 
 </html>
